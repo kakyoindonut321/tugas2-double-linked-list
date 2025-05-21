@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.embeddedhtml": "html",
+    "*.php": "php",
+    "*.js": "javascript",
+    "xstring": "cpp",
+    "xutility": "cpp",
+    "ostream": "cpp"
+  }
+}

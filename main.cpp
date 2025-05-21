@@ -3,25 +3,23 @@ using namespace std;
 
 struct Node
 {
-    int data;
+    string judul;
+    string penulis;
     Node *next;
     Node *prev;
 };
 
-struct Node *buatnode(int data)
+struct Node *buatnode(string judul, string penulis)
 {
-    // Node* newNode = new Node{data, NULL, NULL}; (alternatif)
-    Node *newNode = (Node *)malloc(sizeof(data));
-    newNode->data = data;
-    newNode->next = NULL;
-    newNode->prev = NULL;
+    Node *newNode = new Node{judul, penulis, NULL, NULL};
+    // Node *newNode = (Node *)malloc(sizeof(data));
     return newNode;
 }
 
-void sisipnodedepan(Node **head, int data)
+void sisipnodedepan(Node **head, string judul, string penulis)
 {
 
-    Node *newNode = buatnode(data);
+    Node *newNode = buatnode(judul, penulis);
     newNode->next = *head;
     if (*head != NULL)
     {
@@ -31,13 +29,12 @@ void sisipnodedepan(Node **head, int data)
     *head = newNode;
 }
 
-void sisipnodebelakang(Node **head, int data)
+void sisipnodebelakang(Node **head, string judul, string penulis)
 {
 
-    Node *newNode = buatnode(data);
+    Node *newNode = buatnode(judul, penulis);
     if (*head == NULL)
     {
-
         *head = newNode;
         return;
     }
@@ -50,7 +47,7 @@ void sisipnodebelakang(Node **head, int data)
     newNode->prev = bantu;
 }
 
-void hapusnodetengah(Node **head, int key)
+void hapusnodetengah(Node **head, string key)
 {
     if (*head == NULL)
     {
@@ -59,7 +56,7 @@ void hapusnodetengah(Node **head, int key)
     }
 
     Node *bantu = *head;
-    while (bantu != NULL && bantu->data != key)
+    while (bantu != NULL && bantu->judul != key)
     {
         bantu = bantu->next;
     }
@@ -95,34 +92,29 @@ void printdaridepan(Node *head)
         cout << "Node nya ga ada!" << endl;
     }
     Node *bantu = head;
+    int i = 1;
     while (bantu != NULL)
     {
-        cout << bantu->data << " ";
+        cout << i << ". " << bantu->judul << " by " << bantu->penulis << endl;
         bantu = bantu->next;
+        i += 1;
     }
     cout << endl;
-}
-
-void hapusnodespesifik(Node **head, int key)
-{
-    if (*head == NULL)
-    {
-        cout << "list is empty" << endl;
-        return;
-    }
 }
 
 main()
 {
     Node *head = NULL;
-    sisipnodedepan(&head, 10);
-    sisipnodebelakang(&head, 20);
+    sisipnodedepan(&head, "berk", "kenmura");
+    sisipnodebelakang(&head, "villain soggy", "the guy");
+    sisipnodebelakang(&head, "narutod", "masahiro sakurai");
     printdaridepan(head);
-    // hapusnodetengah(&head, 10);
+    hapusnodetengah(&head, "narut");
+    printdaridepan(head);
     // printdaridepan(head);
     // printdaridepan(head);
 
     int end;
-    cout << "berhentikan...";
+    cout << "done...";
     cin >> end;
 }
