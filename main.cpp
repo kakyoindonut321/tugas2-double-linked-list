@@ -51,7 +51,7 @@ void hapusnodetengah(Node **head, string key)
 {
     if (*head == NULL)
     {
-        cout << "List Kosong" << endl;
+        cout << "List Kosong." << endl;
         return;
     }
 
@@ -63,7 +63,7 @@ void hapusnodetengah(Node **head, string key)
 
     if (bantu == NULL)
     {
-        cout << "Node ga ketemu!" << endl;
+        cout << "Node tidak ketemu!" << endl;
         return;
     }
 
@@ -82,6 +82,7 @@ void hapusnodetengah(Node **head, string key)
     }
 
     free(bantu);
+    cout << "Buku \"" << key << "\" berhasil dihapus." << endl;
 }
 
 void printdaridepan(Node *head)
@@ -89,13 +90,13 @@ void printdaridepan(Node *head)
 
     if (head == NULL)
     {
-        cout << "Node nya ga ada!" << endl;
+        cout << "List kosong." << endl;
     }
     Node *bantu = head;
     int i = 1;
     while (bantu != NULL)
     {
-        cout << i << ". " << bantu->judul << " by " << bantu->penulis << endl;
+        cout << i << ". \"" << bantu->judul << "\" oleh " << bantu->penulis << endl;
         bantu = bantu->next;
         i += 1;
     }
@@ -104,16 +105,7 @@ void printdaridepan(Node *head)
 
 main()
 {
-    // Node *head = NULL;
-    // sisipnodedepan(&head, "berk", "kenmura");
-    // sisipnodebelakang(&head, "villain soggy", "the guy");
-    // sisipnodebelakang(&head, "narutod", "masahiro sakurai");
-    // printdaridepan(head);
-    // hapusnodetengah(&head, "narut");
-    // printdaridepan(head);
-    // printdaridepan(head);
-    // printdaridepan(head);
-
+    Node *head = NULL;
     int pilihan;
     bool program = true;
 
@@ -128,6 +120,7 @@ main()
         cout << "5. Keluar" << endl;
         cout << "Pilih opsi : ";
         cin >> pilihan;
+        cin.ignore(); // idk fix
         cout << endl;
 
         switch (pilihan)
@@ -136,22 +129,42 @@ main()
         {
             cout << "== Tambah Buku dari Depan List ==" << endl;
             string tempjudul, temppenulis;
+            cout << "Masukan judul buku : ";
+            getline(cin, tempjudul);
+            cout << "Masukan nama penulis buku : ";
+            getline(cin, temppenulis);
+            sisipnodedepan(&head, tempjudul, temppenulis);
 
+            cout << "Buku \"" << tempjudul << "\" berhasil ditambah dari depan." << endl;
             break;
         }
         case 2:
         {
             cout << "== Tambah Buku dari Belakang List ==" << endl;
+            string tempjudul, temppenulis;
+            cout << "Masukan judul buku : ";
+            getline(cin, tempjudul);
+            cout << "Masukan nama penulis buku : ";
+            getline(cin, temppenulis);
+            sisipnodebelakang(&head, tempjudul, temppenulis);
+
+            cout << "Buku \"" << tempjudul << "\" berhasil ditambah dari belakang." << endl;
             break;
         }
         case 3:
         {
             cout << "== Hapus Judul bedasarkan Judul ==" << endl;
+            string tempjudul;
+            cout << "Masukan judul buku : ";
+            getline(cin, tempjudul);
+
+            hapusnodetengah(&head, tempjudul);
             break;
         }
         case 4:
         {
             cout << "== Daftar Buku ==" << endl;
+            printdaridepan(head);
             break;
         }
         case 5:
@@ -165,5 +178,9 @@ main()
     }
 
     cout << "Terimakasih terlah memakai Menu Sistem Perpustakaan Guramedia." << endl;
+
+    string end;
+    cout << "Tekan apapun untuk keluar...";
+    cin >> end;
     return 0;
 }
