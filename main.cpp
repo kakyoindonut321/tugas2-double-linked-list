@@ -104,17 +104,66 @@ void printdaridepan(Node *head)
 
 main()
 {
-    Node *head = NULL;
-    sisipnodedepan(&head, "berk", "kenmura");
-    sisipnodebelakang(&head, "villain soggy", "the guy");
-    sisipnodebelakang(&head, "narutod", "masahiro sakurai");
-    printdaridepan(head);
-    hapusnodetengah(&head, "narut");
-    printdaridepan(head);
+    // Node *head = NULL;
+    // sisipnodedepan(&head, "berk", "kenmura");
+    // sisipnodebelakang(&head, "villain soggy", "the guy");
+    // sisipnodebelakang(&head, "narutod", "masahiro sakurai");
+    // printdaridepan(head);
+    // hapusnodetengah(&head, "narut");
+    // printdaridepan(head);
     // printdaridepan(head);
     // printdaridepan(head);
 
-    int end;
-    cout << "done...";
-    cin >> end;
+    int pilihan;
+    bool program = true;
+
+    while (program)
+    {
+        cout << "=== MENU SISTEM PERPUSTAKAAN GURAMEDIA ===" << endl;
+
+        cout << "1. Tambah Buku dari Depan List" << endl;
+        cout << "2. Tambah Buku dari Belakang List" << endl;
+        cout << "3. Hapus Judul bedasarkan Judul" << endl;
+        cout << "4. Daftar Buku" << endl;
+        cout << "5. Keluar" << endl;
+        cout << "Pilih opsi : ";
+        cin >> pilihan;
+        cout << endl;
+
+        switch (pilihan)
+        {
+        case 1:
+        {
+            cout << "== Tambah Buku dari Depan List ==" << endl;
+            string tempjudul, temppenulis;
+
+            break;
+        }
+        case 2:
+        {
+            cout << "== Tambah Buku dari Belakang List ==" << endl;
+            break;
+        }
+        case 3:
+        {
+            cout << "== Hapus Judul bedasarkan Judul ==" << endl;
+            break;
+        }
+        case 4:
+        {
+            cout << "== Daftar Buku ==" << endl;
+            break;
+        }
+        case 5:
+            program = false;
+            break;
+        default:
+            cout << "Opsi invalid, ulang." << endl;
+        }
+
+        cout << endl;
+    }
+
+    cout << "Terimakasih terlah memakai Menu Sistem Perpustakaan Guramedia." << endl;
+    return 0;
 }
